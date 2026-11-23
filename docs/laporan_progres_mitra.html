@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Laporan Progres — Sistem Penjualan Online alaiya.id</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { margin: 0; font-family: 'Inter', sans-serif; color: #18181B; background: #FFFFFF; line-height: 1.55; }
+  h1, h2, h3, h4, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; }
+  .page { width: 210mm; min-height: 297mm; padding: 18mm 18mm 16mm; position: relative; break-after: page; overflow: hidden; }
+  .page:last-child { break-after: auto; }
+
+  /* Cover Page */
+  .cover { background: linear-gradient(155deg, #2D5A4C 0%, #1B3A30 65%, #122821 100%); color: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between; padding: 24mm 20mm; }
+  .cover-badge { display: inline-block; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .cover h1 { font-size: 38px; line-height: 1.15; font-weight: 800; margin-top: 18px; }
+  .cover-sub { font-size: 15px; color: #D5E8E1; margin-top: 14px; max-width: 150mm; }
+  .cover-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+  .cover-card { background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px; padding: 14px; }
+  .cover-card .num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 800; color: #F4EFEA; }
+  .cover-card .lbl { font-size: 11px; color: #D5E8E1; margin-top: 4px; }
+  .cover-footer { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 16px; display: flex; justify-content: space-between; font-size: 11px; color: #D5E8E1; }
+
+  /* Section Header */
+  .sec-tag { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #E8F2EE; color: #2D5A4C; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .sec-title { font-size: 22px; font-weight: 800; color: #18181B; margin-top: 6px; }
+  .sec-desc { font-size: 12.5px; color: #52525B; margin-top: 4px; margin-bottom: 14px; }
+
+  /* Cards & Grids */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .card { background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 12px; padding: 14px 16px; }
+  .card-sand { background: #F4EFEA; border: 1px solid #E6DDD3; border-radius: 12px; padding: 14px 16px; }
+  .card h3 { font-size: 13.5px; font-weight: 700; color: #2D5A4C; margin-bottom: 6px; }
+  .card p, .card-sand p { font-size: 11.5px; color: #3F3F46; margin: 0; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 11px; }
+  th { background: #2D5A4C; color: #FFFFFF; text-align: left; padding: 8px 10px; font-weight: 600; }
+  th:first-child { border-top-left-radius: 8px; }
+  th:last-child { border-top-right-radius: 8px; }
+  td { padding: 7.5px 10px; border-bottom: 1px solid #E4E4E7; color: #27272A; vertical-align: top; }
+  tr:nth-child(even) td { background: #FAFAFA; }
+  .mono { font-weight: 600; color: #2D5A4C; }
+
+  /* Screenshot Placeholder Box */
+  .shot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
+  .shot-card { border: 1px solid #D4D4D8; border-radius: 12px; overflow: hidden; background: #FFFFFF; }
+  .shot-head { background: #F4F4F5; padding: 8px 12px; border-bottom: 1px solid #E4E4E7; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 700; color: #18181B; }
+  .shot-head span.tag { font-size: 9.5px; padding: 2px 8px; border-radius: 999px; background: #E8F2EE; color: #2D5A4C; }
+  .shot-space { height: 78mm; background: repeating-linear-gradient(45deg, #FAFAFA, #FAFAFA 10px, #F4F4F5 10px, #F4F4F5 20px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 14px; border: 1.5px dashed #A1A1AA; margin: 10px; border-radius: 8px; }
+  .shot-space .title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 700; color: #2D5A4C; }
+  .shot-space .hint { font-size: 10px; color: #71717A; margin-top: 4px; max-width: 65mm; }
+  .shot-cap { padding: 0 12px 10px; font-size: 10.5px; color: #52525B; }
+
+  /* Flow Steps */
+  .flow-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
+  .flow-step { background: #F4EFEA; border-radius: 10px; padding: 10px; border-left: 3px solid #2D5A4C; }
+  .flow-step .st { font-size: 10px; font-weight: 700; color: #2D5A4C; }
+  .flow-step .tx { font-size: 10.5px; color: #27272A; margin-top: 3px; }
+
+  .page-num { position: absolute; bottom: 10mm; right: 18mm; font-size: 10px; color: #71717A; }
+  .page-brand { position: absolute; bottom: 10mm; left: 18mm; font-size: 10px; font-weight: 600; color: #2D5A4C; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER -->
+<div class="page cover">
+  <div>
+    <span class="cover-badge">Laporan Progres &amp; Validasi Mitra • November 2026</span>
+    <h1>Sistem Penjualan Online<br>Brand alaiya.id</h1>
+    <p class="cover-sub">
+      Laporan perkembangan perancangan tampilan (Figma), sketsa Data Master Item &amp; Batch Pre-Order, serta prototipe website berjalan untuk membantu operasional alaiya.id agar terpusat dan bebas dead stock.
+    </p>
+    <div class="cover-cards">
+      <div class="cover-card">
+        <div class="num">13 Halaman</div>
+        <div class="lbl">Rancangan Mockup &amp; Alur UI di Figma</div>
+      </div>
+      <div class="cover-card">
+        <div class="num">100% Jalan</div>
+        <div class="lbl">Prototipe Website Interaktif (Laravel)</div>
+      </div>
+      <div class="cover-card">
+        <div class="num">Siap Uji</div>
+        <div class="lbl">Sketsa Data Master Produk &amp; Batch PO</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div>
+      <strong>Disusun oleh Kelompok 8 (2B-D3):</strong><br>
+      Putra Suyapratama (251511056) • Hilmi Kautsar (251511041) • Muhammad Rafi Ardiyansyah (251511051)
+    </div>
+    <div style="text-align:right;">
+      <strong>Mitra:</strong> Owner alaiya.id &amp; Tim RBW<br>
+      Fokus: Fashion Harian (Non-Batik)
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: RINGKASAN & SKETSA DATA MASTER -->
+<div class="page">
+  <span class="sec-tag">Bagian 1 • Ringkasan &amp; Data Master</span>
+  <h2 class="sec-title">Solusi Masalah &amp; Sketsa Data Master (Siap Validasi)</h2>
+  <p class="sec-desc">Mengubah pencatatan yang sebelumnya tersebar menjadi satu website terpusat, dimulai dari Data Master Item dan pengaturan Batch Pre-Order.</p>
+
+  <div class="grid-2" style="margin-bottom: 14px;">
+    <div class="card-sand">
+      <h3>Kondisi Sebelumnya (Evaluasi)</h3>
+      <p>Pemesanan melalui tautan terpisah membuat data produk, kuota PO, bukti bayar, dan chat pelanggan tidak terkumpul di satu tempat sehingga berisiko salah catat.</p>
+    </div>
+    <div class="card">
+      <h3>Solusi Website alaiya.id</h3>
+      <p>Satu website untuk katalog harian (tanpa batik), pemesanan PO berkuota (100 pcs/produk), pelacakan status produksi–resi, live chat admin, dan ekspor laporan.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size:13px; font-weight:700; color:#18181B; margin-top:8px;">A. Sketsa Data Master Produk &amp; Varian Warna</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:22%;">Nama Data (Field)</th>
+        <th style="width:46%;">Penjelasan Sederhana untuk Mitra</th>
+        <th style="width:32%;">Contoh Isi di Sistem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono">Nama Produk</td><td>Judul produk yang tampil di halaman katalog</td><td>Alaiya Daily Voal Scarf</td></tr>
+      <tr><td class="mono">Kategori</td><td>Kelompok produk fashion harian (tanpa unsur batik)</td><td>Scarf Harian / Daily Wear</td></tr>
+      <tr><td class="mono">Harga Satuan</td><td>Harga jual per pcs sebelum ongkos kirim</td><td>Rp 49.000</td></tr>
+      <tr><td class="mono">Bahan</td><td>Informasi material kain agar pembeli yakin sebelum PO</td><td>Voal Ultrafine Premium</td></tr>
+      <tr><td class="mono">Dimensi / Ukuran</td><td>Ukuran umum yang dipublikasikan secara detail</td><td>115 cm × 115 cm (All Size)</td></tr>
+      <tr><td class="mono">Varian Warna</td><td>Pilihan warna yang bisa dipilih pembeli saat checkout</td><td>Sage Green, Dusty Rose, Cream Oat, Charcoal, Navy</td></tr>
+      <tr><td class="mono">Status Tayang</td><td>Mengatur apakah produk ditampilkan di katalog publik</td><td>Aktif / Nonaktif</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:13px; font-weight:700; color:#18181B; margin-top:14px;">B. Sketsa Data Batch Pre-Order (Pengendali Kuota)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:22%;">Nama Data (Field)</th>
+        <th style="width:46%;">Fungsi Operasional</th>
+        <th style="width:32%;">Contoh Isi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono">Kode &amp; Periode PO</td><td>Penanda gelombang PO dan jadwal buka–tutup otomatis</td><td>PO-12-VOAL (1–14 Des 2026)</td></tr>
+      <tr><td class="mono">Kuota Total Batch</td><td>Batas maksimal pesanan agar tidak terjadi dead stock</td><td>100 pcs per produk</td></tr>
+      <tr><td class="mono">Unit Teralokasi</td><td>Jumlah pesanan masuk (otomatis berkurang jika batal)</td><td>35 pcs (Sisa 65 pcs)</td></tr>
+      <tr><td class="mono">Estimasi Produksi</td><td>Informasi lama pengerjaan yang tampil ke pelanggan</td><td>7–10 hari kerja setelah tutup</td></tr>
+    </tbody>
+  </table>
+
+  <div class="flow-row">
+    <div class="flow-step"><div class="st">1. Pesan PO</div><div class="tx">Pilih warna &amp; jumlah, kuota langsung terkunci.</div></div>
+    <div class="flow-step"><div class="st">2. Bayar (24 Jam)</div><div class="tx">Upload bukti transfer sebelum batas waktu.</div></div>
+    <div class="flow-step"><div class="st">3. Verifikasi Admin</div><div class="tx">Admin setujui atau tolak bukti dengan alasan.</div></div>
+    <div class="flow-step"><div class="st">4. Produksi &amp; Resi</div><div class="tx">Batch tutup, produksi berjalan, resi diinput.</div></div>
+  </div>
+
+  <div class="page-brand">alaiya.id — Laporan Progres Mitra</div>
+  <div class="page-num">Halaman 2</div>
+</div>
+
+<!-- PAGE 3: LAMPIRAN SCREENSHOT HALAMAN PELANGGAN -->
+<div class="page">
+  <span class="sec-tag">Bagian 2 • Lampiran Tampilan Pelanggan</span>
+  <h2 class="sec-title">Halaman Website untuk Pengunjung &amp; Pelanggan</h2>
+  <p class="sec-desc">Area bertanda garis putus-putus di bawah ini disiapkan untuk menempelkan hasil tangkapan layar (screenshot) dari Figma maupun prototipe website Laravel.</p>
+
+  <div class="shot-grid">
+    <div class="shot-card">
+      <div class="shot-head"><span>1. Beranda &amp; Katalog PO</span><span class="tag">Publik</span></div>
+      <div class="shot-space">
+        <div class="title">[ Space Screenshot: Katalog PO ]</div>
+        <div class="hint">Tempelkan screenshot halaman <code>/katalog</code> atau Frame <code>Shop</code> dari Figma di sini.</div>
+      </div>
+      <div class="shot-cap">Menampilkan daftar scarf &amp; daily wear non-batik, harga, sisa kuota (100 pcs), dan status PO dibuka/tutup.</div>
+    </div>
+
+    <div class="shot-card">
+      <div class="shot-head"><span>2. Detail Produk &amp; Pilih Varian</span><span class="tag">Publik</span></div>
+      <div class="shot-space">
+        <div class="title">[ Space Screenshot: Detail Produk ]</div>
+        <div class="hint">Tempelkan screenshot halaman <code>/produk/...</code> atau Frame <code>Product detail page</code>.</div>
+      </div>
+      <div class="shot-cap">Menampilkan foto, bahan, dimensi detail (115×115 cm), pilihan warna, serta tombol pesan PO &amp; Live Chat.</div>
+    </div>
+
+    <div class="shot-card">
+      <div class="shot-head"><span>3. Keranjang &amp; Checkout PO</span><span class="tag">Pelanggan</span></div>
+      <div class="shot-space">
+        <div class="title">[ Space Screenshot: Checkout PO ]</div>
+        <div class="hint">Tempelkan screenshot halaman <code>/keranjang</code> atau Frame <code>Keranjang &amp; Checkout PO</code>.</div>
+      </div>
+      <div class="shot-cap">Menampilkan form penerima, alamat, ongkos kirim tetap, rincian tagihan, serta catatan tenggat bayar 24 jam.</div>
+    </div>
+
+    <div class="shot-card">
+      <div class="shot-head"><span>4. Tracking Status &amp; Bukti Bayar</span><span class="tag">Pelanggan</span></div>
+      <div class="shot-space">
+        <div class="title">[ Space Screenshot: Tracking PO ]</div>
+        <div class="hint">Tempelkan screenshot halaman <code>/pesanan-saya/...</code> atau Frame <code>Detail Pesanan</code>.</div>
+      </div>
+      <div class="shot-cap">Menampilkan 6 tahap status pesanan, form unggah bukti transfer, nomor resi, dan riwayat perubahan status.</div>
+    </div>
+  </div>
+
+  <div class="page-brand">alaiya.id — Laporan Progres Mitra</div>
+  <div class="page-num">Halaman 3</div>
+</div>
+
+<!-- PAGE 4: LAMPIRAN ADMIN & KEPUTUSAN MITRA -->
+<div class="page">
+  <span class="sec-tag">Bagian 3 • Lampiran Admin &amp; Konfirmasi Mitra</span>
+  <h2 class="sec-title">Panel Admin, Live Chat &amp; Poin Kesepakatan Meeting</h2>
+  <p class="sec-desc">Halaman operasional tunggal untuk Admin alaiya.id serta daftar keputusan yang perlu dikonfirmasi hari ini bersama tim RBW.</p>
+
+  <div class="shot-grid">
+    <div class="shot-card">
+      <div class="shot-head"><span>5. Admin: Master Item &amp; Batch PO</span><span class="tag">Admin</span></div>
+      <div class="shot-space" style="height: 62mm;">
+        <div class="title">[ Space Screenshot: Master Data ]</div>
+        <div class="hint">Tempelkan screenshot halaman <code>/admin/produk</code> atau Frame <code>Admin - Master Produk</code>.</div>
+      </div>
+      <div class="shot-cap">Form tambah produk, varian warna, dimensi ukuran, dan buka/tutup batch kuota 100 pcs.</div>
+    </div>
+
+    <div class="shot-card">
+      <div class="shot-head"><span>6. Admin: Verifikasi, Chat &amp; Laporan</span><span class="tag">Admin</span></div>
+      <div class="shot-space" style="height: 62mm;">
+        <div class="title">[ Space Screenshot: Verifikasi &amp; Laporan ]</div>
+        <div class="hint">Tempelkan screenshot <code>/admin/pesanan</code> atau <code>/admin/laporan</code>.</div>
+      </div>
+      <div class="shot-cap">Pemeriksaan bukti transfer, input resi pengiriman, balas live chat, dan ekspor Excel/CSV.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 14px; border-color: #2D5A4C; background: #F8FBFA;">
+    <h3>Daftar Poin yang Perlu Dikonfirmasi dengan Mitra / Tim RBW Hari Ini</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:10%;">No</th>
+          <th style="width:28%;">Topik</th>
+          <th style="width:62%;">Pertanyaan untuk Disepakati</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="mono">1</td><td><strong>Arti Kuota 100 pcs</strong></td><td>Apakah 100 pcs berlaku sebagai batas total per produk per batch, per warna, atau batas minimal produksi vendor?</td></tr>
+        <tr><td class="mono">2</td><td><strong>Skema Pembayaran</strong></td><td>Apakah tahap awal memakai transfer manual lunas (batas 24 jam) sebelum integrasi Midtrans pada fase lanjutan?</td></tr>
+        <tr><td class="mono">3</td><td><strong>Ongkos Kirim</strong></td><td>Apakah tarif ongkir tetap (flat) per pesanan sudah sesuai untuk tahap awal sebelum tarif kurir otomatis?</td></tr>
+        <tr><td class="mono">4</td><td><strong>Kelengkapan Master Data</strong></td><td>Apakah kolom Nama, Kategori, Harga, Bahan, Dimensi, dan Varian Warna sudah memenuhi kebutuhan tim RBW?</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-brand">alaiya.id — Laporan Progres Mitra</div>
+  <div class="page-num">Halaman 4</div>
+</div>
+
+</body>
+</html>
